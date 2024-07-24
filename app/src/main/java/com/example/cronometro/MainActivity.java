@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
             }else{
                 Cronometer.getInstance().executeCronometer();
                 isInitialized = true;
+                isPaused = false;
             }
         });
 

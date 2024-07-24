@@ -17,7 +17,7 @@ public class CronometerTask extends AsyncTask<Void, Float, Boolean> {
         while (true) {
             publishProgress(Float.valueOf(i));
             try {
-                Thread.sleep(999);
+                Thread.sleep(99);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
