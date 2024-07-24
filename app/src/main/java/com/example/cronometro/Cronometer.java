@@ -21,6 +21,7 @@ public class Cronometer implements ICronometer {
 
     CronometerTask cronometroTask = new CronometerTask();
 
+
     @Override
     public void update(int i) {
         hours = i/3600;
@@ -52,5 +53,13 @@ public class Cronometer implements ICronometer {
     public void executeCronometer(){
         cronometroTask.execute();
     }
+
+
+    public boolean cancelCronometer(){
+        boolean ret = cronometroTask.cancel(true);
+        cronometroTask = new CronometerTask();
+        return ret;
+    }
+
 
 }

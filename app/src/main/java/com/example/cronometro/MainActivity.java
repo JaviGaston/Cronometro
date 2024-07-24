@@ -1,6 +1,7 @@
 package com.example.cronometro;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,7 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity implements ICronometer.ICronometerListener {
     private TextView timeView;
-    private boolean isInicialized = false;
+    private boolean isInitialized = false;
+    private boolean isCancelled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +30,28 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
         Button startButton = findViewById(R.id.button);
         timeView = findViewById(R.id.textViewSegundos);
         startButton.setOnClickListener(view -> {
-            if (!isInicialized) {
+            if (!isInitialized) {
                 Cronometer.getInstance().executeCronometer();
-                isInicialized = true;
+                isInitialized = true;
             }
         });
         Cronometer.getInstance().setCronometerListener(this);
-    }
 
+        Button stopButton = findViewById(R.id.buttonStop);
+        stopButton.setOnClickListener(view -> {
+
+        });
+
+        stopButton.setOnLongClickListener(view -> {
+            isCancelled = Cronometer.getInstance().cancelCronometer();
+            if (isCancelled){
+                timeView.setText("00:00:00");
+                isInitialized = false;
+            }
+            return true;
+        });
+
+    }
 
     @Override
     public void onCronometerTick(String time) {
