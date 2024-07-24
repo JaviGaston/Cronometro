@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class CronometerTask extends AsyncTask<Void, Float, Boolean> {
-public int i = 0;
+public static int i = 0;
 public CronometerTask(){};
 
     @Override

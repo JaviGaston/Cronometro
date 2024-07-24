@@ -58,6 +58,13 @@ public class Cronometer implements ICronometer {
     public boolean cancelCronometer(){
         boolean ret = cronometroTask.cancel(true);
         cronometroTask = new CronometerTask();
+        CronometerTask.i = 0;
+        return ret;
+    }
+
+    public boolean pauseCronometer(){
+        boolean ret = cronometroTask.cancel(true);
+        cronometroTask = new CronometerTask();
         return ret;
     }
 

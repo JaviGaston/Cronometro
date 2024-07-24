@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
 
         Button stopButton = findViewById(R.id.buttonStop);
         stopButton.setOnClickListener(view -> {
-
+            isCancelled = Cronometer.getInstance().pauseCronometer();
+            if (isCancelled){
+                isInitialized = false;
+            }
         });
 
         stopButton.setOnLongClickListener(view -> {
