@@ -10,6 +10,7 @@ public class Cronometer implements ICronometer {
     private String minutesString;
     private String secondsString;
     private static Cronometer instance;
+    private int currentTime = 0;
     private Cronometer(){}
 
     public static Cronometer getInstance(){
@@ -19,11 +20,12 @@ public class Cronometer implements ICronometer {
         return instance;
     }
 
-    CronometerTask cronometroTask = new CronometerTask();
+    CronometerTask cronometroTask = new CronometerTask(currentTime);
 
 
     @Override
     public void update(int i) {
+        currentTime = i;
         hours = i/3600;
         if(hours <10){
             hoursString = "0" + hours;
@@ -57,14 +59,13 @@ public class Cronometer implements ICronometer {
 
     public boolean cancelCronometer(){
         boolean ret = cronometroTask.cancel(true);
-        cronometroTask = new CronometerTask();
-        CronometerTask.i = 0;
+        cronometroTask = new CronometerTask(0);
         return ret;
     }
 
     public boolean pauseCronometer(){
         boolean ret = cronometroTask.cancel(true);
-        cronometroTask = new CronometerTask();
+        cronometroTask = new CronometerTask(currentTime);
         return ret;
     }
 

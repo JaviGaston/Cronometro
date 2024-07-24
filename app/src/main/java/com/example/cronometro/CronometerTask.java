@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class CronometerTask extends AsyncTask<Void, Float, Boolean> {
-public static int i = 0;
-public CronometerTask(){};
+    private int i = 0;
+    public CronometerTask(int i){
+        this.i = i;
+    };
 
     @Override
     protected Boolean doInBackground(Void... params) {

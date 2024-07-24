@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
     private TextView timeView;
     private boolean isInitialized = false;
     private boolean isCancelled = false;
+    private boolean isPaused = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,12 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
         Button stopButton = findViewById(R.id.buttonStop);
         stopButton.setOnClickListener(view -> {
             isCancelled = Cronometer.getInstance().pauseCronometer();
-            if (isCancelled){
+            if (isCancelled && !isPaused){
                 isInitialized = false;
+                isPaused = true;
+            }else{
+                Cronometer.getInstance().executeCronometer();
+                isInitialized = true;
             }
         });
 
