@@ -1,7 +1,6 @@
 package com.example.cronometro;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.cronometro.save.ConectDataBase;
 
 public class MainActivity extends AppCompatActivity implements ICronometer.ICronometerListener {
     private TextView timeView;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ICronometer.ICron
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        ConectDataBase conectDataBase = ConectDataBase.getInstance(getApplicationContext());
 
         Button startButton = findViewById(R.id.button);
         timeView = findViewById(R.id.textViewSegundos);
